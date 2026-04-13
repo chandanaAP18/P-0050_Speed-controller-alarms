@@ -1,0 +1,20 @@
+<?php
+$conn = new mysqli("localhost","root","","motor_db");
+
+$result = $conn->query("SELECT * FROM motor_data ORDER BY id DESC LIMIT 1");
+$row = $result->fetch_assoc();
+
+echo json_encode($row);
+?>
+<?php
+$conn = new mysqli("localhost","root","","motor_db");
+
+$speed = $_POST['speed'];
+$temp = $_POST['temp'];
+$voltage = $_POST['voltage'];
+
+$conn->query("INSERT INTO motor_data(speed,temp,voltage) 
+VALUES($speed,$temp,$voltage)");
+
+echo "Data stored";
+?>
