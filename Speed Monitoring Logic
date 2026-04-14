@@ -1,0 +1,5 @@
+function checkStatus($speed){
+    if($speed > 1800) return "CRITICAL";
+    else if($speed < 1000) return "WARNING";
+    else return "NORMAL";
+}
