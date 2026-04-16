@@ -1,0 +1,5 @@
+if($status=="CRITICAL"){
+ mail("emergency@mail.com",
+ "SOS ALERT",
+ "Motor failure detected immediately!");
+}
