@@ -1,0 +1,71 @@
+import unittest
+from app import predict_speed
+
+# logic function
+def check_status(predicted, actual):
+    if actual > predicted + 120:
+        return "OVER"
+    elif actual < predicted - 120:
+        return "UNDER"
+    else:
+        return "NORMAL"
+
+
+class UnitTestMotor(unittest.TestCase):
+
+    # Test AI model
+    def test_prediction(self):
+        result = predict_speed(150)
+        self.assertTrue(result > 1000)
+
+    # Test logic conditions
+    def test_over_speed(self):
+        self.assertEqual(check_status(1500, 1700), "OVER")
+
+    def test_under_speed(self):
+        self.assertEqual(check_status(1500, 1200), "UNDER")
+
+    def test_normal(self):
+        self.assertEqual(check_status(1500, 1500), "NORMAL")
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+#INTEGRATION TESTING (Full System Flow)
+import unittest
+import requests
+
+class IntegrationTestMotor(unittest.TestCase):
+
+    BASE_URL = "http://127.0.0.1:5000"
+
+    def test_server_running(self):
+        response = requests.get(self.BASE_URL)
+        self.assertEqual(response.status_code, 200)
+
+    def test_data_api(self):
+        response = requests.get(self.BASE_URL + "/data")
+        self.assertEqual(response.status_code, 200)
+
+        data = response.json()
+
+        # Check required fields
+        self.assertIn("voltage", data)
+        self.assertIn("predicted", data)
+        self.assertIn("actual", data)
+        self.assertIn("status", data)
+
+    def test_status_values(self):
+        response = requests.get(self.BASE_URL + "/data")
+        data = response.json()
+
+        valid = ["🔴 CRITICAL OVER SPEED",
+                 "🟡 UNDER SPEED WARNING",
+                 "🟢 NORMAL"]
+
+        self.assertIn(data["status"], valid)
+
+
+if __name__ == "__main__":
+    unittest.main()
