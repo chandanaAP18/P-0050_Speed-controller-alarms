@@ -1,0 +1,7 @@
+new Chart(ctx,{
+ type:"line",
+ data:{
+   labels: time,
+   datasets:[{data:speed}]
+ }
+});
