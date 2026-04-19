@@ -1,0 +1,80 @@
+# Initialize repo
+git init
+
+# Add all project files
+git add .
+
+# First commit
+git commit -m "Initial commit: AI Motor System"
+
+# Connect to GitHub (replace with your repo URL)
+git remote add origin https://github.com/your-username/AI-Motor-System.git
+
+# Set main branch
+git branch -M main
+# Create feature branch
+git checkout -b feature-dashboard
+
+# Make changes (edit files in VS Code)
+
+# Add changes
+git add .
+
+# Commit changes
+git commit -m "Added dashboard UI and API integration"
+
+# Push branch
+git push origin feature-dashboard
+
+# Push to GitHub
+git push -u origin main
+# Switch to main
+git checkout main
+
+# Pull latest updates
+git pull origin main
+
+# Merge feature branch
+git merge feature-dashboard
+
+# Push merged code
+git push origin main
+
+# Add test files
+git add test_unit.py test_integration.py
+
+# Commit tests
+git commit -m "Added unit and integration tests"
+
+# Push changes
+git push
+# Create bug fix branch
+git checkout -b bugfix-speed-error
+
+# Fix code
+
+git add .
+git commit -m "Fixed speed calculation bug"
+
+git push origin bugfix-speed-error
+# Create version tag
+git tag v1.0
+
+# Push tag
+git push origin v1.0
+import os
+
+def run(cmd):
+    os.system(cmd)
+
+print("🚀 Running Git Workflow...")
+
+run("git add .")
+run('git commit -m "Auto commit from script"')
+run("git push")
+
+print("✅ Done!")
+git pull
+git add .
+git commit -m "update"
+git push
